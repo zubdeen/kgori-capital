@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useLocale } from "@/components/locale-provider";
 import { PhilosophyTabs } from "@/components/philosophy-tabs";
-import { Testimonials } from "@/components/testimonials";
 import { ArrowLink, CtaBand, RiskMeter, SectionHeading, StatBlock } from "@/components/ui";
 import {
   BuildingIcon,
@@ -300,26 +299,20 @@ export function HomeView() {
             <h2 className="display text-[clamp(1.8rem,3.2vw,2.6rem)]">{t("values.title")}</h2>
             <p className="max-w-md text-[13.5px] leading-relaxed text-muted">{t("values.lead")}</p>
           </div>
-          <div className="mt-9 grid grid-cols-2 justify-items-center gap-x-8 gap-y-6 text-center lg:grid-cols-5">
+          <ul className="mt-10 grid gap-x-8 gap-y-8 border-t border-line pt-8 sm:grid-cols-2 lg:grid-cols-5">
             {values.map((value, index) => {
               const Icon = valueIcons[index] ?? StarIcon;
               return (
-                <div
-                  key={value.name}
-                  className={`flex flex-col items-center ${
-                    index === values.length - 1 && values.length % 2 === 1
-                      ? "col-span-2 lg:col-span-1"
-                      : ""
-                  }`}
-                >
-                  <Icon className="mb-3 h-[18px] w-[18px] text-rust" />
-                  <h3 className="text-[13px] font-semibold uppercase tracking-[0.12em] text-rust">
+                <li key={value.name}>
+                  <Icon className="h-6 w-6 text-rust" />
+                  <h3 className="mt-4 text-[12px] font-semibold uppercase tracking-[0.12em] text-rust">
                     {value.name}
                   </h3>
-                </div>
+                  <p className="mt-2 text-[12.5px] leading-relaxed text-muted">{value.body}</p>
+                </li>
               );
             })}
-          </div>
+          </ul>
           <div className="mt-8">
             <ArrowLink href="/about#values">{t("values.link")}</ArrowLink>
           </div>
@@ -379,12 +372,6 @@ export function HomeView() {
             </ArrowLink>
             <ArrowLink href="/responsibility">{t("philosophy.linkResponsible")}</ArrowLink>
           </div>
-        </div>
-      </section>
-
-      <section className="py-16 md:py-20">
-        <div className="container-x">
-          <Testimonials />
         </div>
       </section>
 

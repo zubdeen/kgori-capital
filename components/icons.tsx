@@ -316,8 +316,32 @@ export function SearchIcon({ className = "h-4 w-4", ...props }: IconProps) {
   );
 }
 
-/* One mark per PRIDE value, in the same order as the values list. */
-export const valueIcons = [FlameIcon, ShieldIcon, ScaleIcon, CycleIcon, StarIcon] as const;
+/*
+ * One mark per PRIDE value, in the same order as the values list. The artwork is
+ * the client's own set from kgoricapital.com, served from /brand/values and
+ * masked so it takes the colour of the surrounding text.
+ */
+const valueMarks = [
+  "/brand/values/passion.svg",
+  "/brand/values/reliability.svg",
+  "/brand/values/integrity.svg",
+  "/brand/values/dynamism.svg",
+  "/brand/values/excellence.svg",
+] as const;
+
+function valueMark(src: string) {
+  return function ValueMark({ className = "h-5 w-5" }: { className?: string }) {
+    return (
+      <span
+        aria-hidden="true"
+        className={`value-mark ${className}`}
+        style={{ maskImage: `url("${src}")`, WebkitMaskImage: `url("${src}")` }}
+      />
+    );
+  };
+}
+
+export const valueIcons = valueMarks.map(valueMark);
 
 export function GaugeIcon({ className = "h-4 w-4", ...props }: IconProps) {
   return (

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { ArrowLink, SectionHeading, StatBlock } from "@/components/ui";
 import { StarIcon, valueIcons } from "@/components/icons";
+import { Testimonials } from "@/components/testimonials";
 import { useLocale } from "@/components/locale-provider";
 import { company } from "@/lib/content";
 import { blurProps } from "@/lib/image-blur";
@@ -113,7 +114,7 @@ export function AboutView() {
                 <li key={value.name} className="bg-paper">
                   <div className="flex h-full flex-col p-6">
                     <div className="mb-5 flex items-center gap-3">
-                      <Icon className="h-5 w-5 shrink-0 text-rust" />
+                      <Icon className="h-6 w-6 shrink-0 text-rust" />
                       <h3 className="text-[15px] font-semibold">{value.name}</h3>
                     </div>
                     <p className="mt-2 text-[12.5px] leading-relaxed text-muted">{value.body}</p>
@@ -160,7 +161,9 @@ export function AboutView() {
         </div>
       </section>
 
-      <section className="border-t border-line py-16 md:py-20">
+      <Testimonials />
+
+      <section className="border-t border-line bg-paper py-16 md:py-20">
         <div className="container-x grid gap-px bg-line md:grid-cols-2">
           <div className="bg-paper p-6 md:p-8">
             <p className="eyebrow text-muted">{c.people.eyebrow}</p>
